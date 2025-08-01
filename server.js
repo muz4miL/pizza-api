@@ -21,7 +21,8 @@ server.register(import("@fastify/cors"), {
     "https://pizza-ordering-app-react-tanstack.vercel.app",
     "https://pizza-qei1istsz-muzamil-shirazs-projects.vercel.app",
     "http://localhost:5173",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    /\.vercel\.app$/
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -238,7 +239,6 @@ server.post("/api/order", async function createOrder(req, res) {
 });
 
 server.get("/api/past-orders", async function getPastOrders(req, res) {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const database = await initDB();
   try {
     const page = parseInt(req.query.page, 10) || 1;
