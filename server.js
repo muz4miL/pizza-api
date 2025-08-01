@@ -48,6 +48,19 @@ server.register(fastifyStatic, {
   prefix: "/", //
 });
 
+// Welcome route
+server.get("/", async function welcome(req, res) {
+  res.send({ 
+    message: "Pizza API is running! 🍕", 
+    endpoints: [
+      "/api/pizzas",
+      "/api/pizza-of-the-day", 
+      "/api/past-orders",
+      "/api/order"
+    ]
+  });
+});
+
 server.get("/api/pizzas", async function getPizzas(req, res) {
   const database = await initDB();
   const pizzasPromise = database.all(
